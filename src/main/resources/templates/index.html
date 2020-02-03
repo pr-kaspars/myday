@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Good Thymes Virtual Grocery</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="/css/main.css" th:href="@{/css/main.css}"/>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/create-recognition">Recognise</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="body-content">
+    <h3>Recognitions</h3>
+
+    <div class="card-columns">
+        <div class="card" data-th-each="recognition : ${recognitions}">
+            <div class="card-body">
+                <p class="card-text">[[${recognition.message}]]</p>
+                <p class="card-text"><small class="text-muted">[[${recognition.author}]]</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
