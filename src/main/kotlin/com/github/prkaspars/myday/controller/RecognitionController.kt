@@ -2,11 +2,7 @@ package com.github.prkaspars.myday.controller
 
 import com.github.prkaspars.myday.entity.Recognition
 import com.github.prkaspars.myday.repository.RecognitionRepository
-import org.springframework.transaction.annotation.Transactional
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
@@ -14,10 +10,14 @@ import reactor.core.publisher.Mono
 @RequestMapping("/recognitions")
 class RecognitionController(private val repository: RecognitionRepository) {
 
-    @GetMapping("/")
-    @Transactional
+    @GetMapping
     fun find(): Flux<Recognition> {
         return repository.findAll()
+    }
+
+    @PostMapping
+    fun create(@RequestBody body: Recognition) {
+        repository.save(body).subscribe()
     }
 
     @GetMapping("/{id}")
@@ -25,3 +25,4 @@ class RecognitionController(private val repository: RecognitionRepository) {
         return repository.findById(id)
     }
 }
+

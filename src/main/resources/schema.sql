@@ -1,18 +1,24 @@
+drop table if exists experiment;
+drop table if exists reaction;
+drop table if exists recognition;
+
+create table experiment(
+  id         serial PRIMARY KEY,
+things     jsonb
+);
+
 create table recognition(
-  id         integer identity PRIMARY KEY,
+  id         serial PRIMARY KEY,
   message    varchar(2000) NOT NULL,
   author     varchar(128) NOT NULL,
   recipient  varchar(128) NOT NULL
---    ,
---    created_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP
 );
 
 create table reaction(
-  id             integer identity PRIMARY KEY,
+  id             serial PRIMARY KEY,
 recognition_id integer NOT NULL,
-author varchar(128)NOT NULL,
-kind varchar(32)NOT NULL,
-message varchar(1000),
---    created_at     timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
-foreign key(recognition_id)references recognition(id)
+author         varchar(128) NOT NULL,
+kind           varchar(32) NOT NULL,
+message        varchar(1000),
+foreign key(recognition_id) references recognition(id)
 );
